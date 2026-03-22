@@ -1,59 +1,288 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Reset Informática
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Tienda online de componentes de ordenador con configurador inteligente de PC y servicio de montaje profesional. Proyecto final del C.F.G.S. Desarrollo de Aplicaciones Web — I.E.S. La Marisma, Huelva.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Características principales
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Catálogo de productos** organizado por categorías con buscador y filtros
+- **Configurador de PC** con wizard de 9 pasos y validación de compatibilidad en tiempo real
+- **Servicio de montaje profesional** configurable desde el panel de administración
+- **Carrito de la compra** con actualización de precios en tiempo real
+- **Proceso de pedido** completo con formulario de envío y confirmación
+- **Factura PDF** descargable desde el historial de pedidos
+- **Panel de administración** con dashboard, gestión de productos, pedidos, usuarios y configuraciones del sistema
+- **Autenticación** por nombre de usuario con cifrado bcrypt
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Stack tecnológico
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+| Tecnología | Versión |
+|-----------|---------|
+| PHP | 8.2.12 |
+| Laravel | 12.12.1 |
+| MariaDB | 10.4.32 |
+| Node.js | 20.17.0 |
+| Vite | 6.x |
+| barryvdh/laravel-dompdf | 3.x |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Requisitos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP 8.2 o superior
+- Composer 2.x
+- Node.js 18 o superior
+- MySQL / MariaDB
+- XAMPP (entorno local) o servidor con Apache/Nginx
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Instalación
 
-## Contributing
+### 1. Clonar el repositorio
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone https://github.com/TU_USUARIO/reset-informatica.git
+cd reset-informatica
+```
 
-## Code of Conduct
+### 2. Instalar dependencias PHP
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+### 3. Instalar dependencias Node.js
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+npm install
+```
 
-## License
+### 4. Configurar el entorno
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Edita el archivo `.env` con los datos de tu base de datos:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=reset_informatica
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 5. Crear la base de datos
+
+Crea una base de datos llamada `reset_informatica` en phpMyAdmin o desde la terminal:
+
+```sql
+CREATE DATABASE reset_informatica CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### 6. Ejecutar migraciones y seeders
+
+```bash
+php artisan migrate --seed
+```
+
+Esto crea todas las tablas y las pobla con:
+- 8 categorías de componentes + categoría Servicios
+- Más de 60 productos con atributos técnicos reales
+- 1 producto de servicio de montaje profesional
+- 5 configuraciones del sistema
+- Usuario administrador por defecto
+
+### 7. Crear enlace simbólico para imágenes
+
+```bash
+php artisan storage:link
+```
+
+### 8. Compilar assets
+
+```bash
+npm run dev
+```
+
+### 9. Iniciar el servidor
+
+```bash
+php artisan serve
+```
+
+Accede a [http://localhost:8000](http://localhost:8000)
+
+---
+
+## Credenciales por defecto
+
+| Rol | Usuario | Contraseña |
+|-----|---------|------------|
+| Administrador | `cad123` | `password123` |
+
+---
+
+## Estructura del proyecto
+
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── Auth/AuthController.php
+│   │   ├── Admin/
+│   │   │   ├── DashboardController.php
+│   │   │   ├── ProductoController.php
+│   │   │   ├── PedidoController.php
+│   │   │   ├── UsuarioController.php
+│   │   │   └── CategoriaController.php
+│   │   ├── ConfiguradorController.php
+│   │   ├── CarritoController.php
+│   │   ├── PedidoController.php
+│   │   ├── CatalogoController.php
+│   │   └── BusquedaController.php
+│   └── Middleware/EsAdmin.php
+├── Models/
+│   ├── User.php
+│   ├── Categoria.php
+│   ├── Producto.php
+│   ├── Atributo.php
+│   ├── AtributoValor.php
+│   ├── CarritoItem.php
+│   ├── Pedido.php
+│   ├── PedidoItem.php
+│   └── Configuracion.php
+└── Services/
+    └── CompatibilidadService.php
+database/
+├── migrations/
+└── seeders/
+resources/views/
+├── layouts/app.blade.php
+├── admin/
+├── auth/
+├── carrito/
+├── catalogo/
+├── configurador/
+├── pedidos/
+├── busqueda/
+├── pages/
+└── errors/
+routes/
+└── web.php
+docs/
+├── api/                    ← Documentación PHPDoc generada
+├── Reset_Informatica_Memoria_v2.docx
+├── Reset_Informatica_Documentacion.docx
+└── Reset_Informatica_Presentacion.pptx
+```
+
+---
+
+## Configurador de PC
+
+El configurador guía al usuario en 9 pasos:
+
+| Paso | Categoría |
+|------|-----------|
+| 1 | Procesadores |
+| 2 | Placas base |
+| 3 | Memoria RAM |
+| 4 | Tarjetas gráficas |
+| 5 | Fuentes de alimentación |
+| 6 | Almacenamiento |
+| 7 | Refrigeración |
+| 8 | Cajas |
+| 9 | Montaje (obligatorio) |
+
+**Plataformas disponibles:**
+- AMD AM4 — Socket AM4, DDR4
+- AMD AM5 — Socket AM5, DDR5
+- Intel LGA1200 — Socket LGA1200, DDR4
+- Intel LGA1700 — Socket LGA1700, DDR4/DDR5
+
+**Reglas de compatibilidad:**
+- CPU ↔ Placa base: el Socket debe coincidir
+- Plataforma ↔ RAM: el tipo de RAM debe ser compatible
+
+---
+
+## Panel de administración
+
+Accesible en `/admin` solo para usuarios con rol administrador.
+
+| Sección | Funcionalidad |
+|---------|--------------|
+| Dashboard | Métricas, gráfico de ventas y top productos |
+| Productos | CRUD completo con imagen y atributos |
+| Categorías | Crear, editar y eliminar categorías |
+| Pedidos | Listar, ver detalle y cambiar estado |
+| Usuarios | Listar, cambiar rol y eliminar |
+
+---
+
+## Configuraciones del sistema
+
+Parámetros editables desde la base de datos:
+
+| Clave | Valor por defecto | Descripción |
+|-------|------------------|-------------|
+| `precio_montaje` | `50.00` | Precio del servicio de montaje (€) |
+| `montaje_activo` | `1` | Servicio disponible (1=sí, 0=no) |
+| `envio_gratis_desde` | `0` | Importe mínimo para envío gratuito |
+| `email_contacto` | `info@resetinformatica.es` | Email de contacto |
+| `telefono_tienda` | `959 000 000` | Teléfono de atención |
+
+---
+
+## Comandos útiles
+
+```bash
+# Resetear la base de datos con datos de ejemplo
+php artisan migrate:fresh --seed
+
+# Limpiar caché
+php artisan cache:clear
+
+# Ver todas las rutas
+php artisan route:list
+
+# Compilar assets para producción
+npm run build
+
+# Generar documentación PHPDoc
+php phpDocumentor.phar run -d app -t docs/api
+```
+
+---
+
+## Documentación
+
+| Documento | Descripción |
+|-----------|-------------|
+| `docs/Reset_Informatica_Memoria_v2.docx` | Memoria del proyecto (anteproyecto, análisis, diseño, implementación) |
+| `docs/Reset_Informatica_Documentacion.docx` | Documentación técnica, manual de usuario y manual de administración |
+| `docs/Reset_Informatica_Presentacion.pptx` | Presentación del proyecto |
+| `docs/api/` | Documentación del código fuente generada con PHPDocumentor |
+
+---
+
+## Autor
+
+**Jonatan Cárdenas Gómez**
+C.F.G.S. Desarrollo de Aplicaciones Web
+I.E.S. La Marisma — Huelva
+Marzo 2026
+
+---
+
+## Licencia
+
+Este proyecto se publica bajo la licencia MIT.
